@@ -1,9 +1,14 @@
 const express = require('express');
 const app = express();
+
+app.use(express.static('public'));
+app.set('view engine', 'html');
+app.engine('html', require('ejs').renderFile);
+
 const port = 3000;
 
 app.get('/', (req, res) => {
-  res.send('<h1>Express Demo App</h1> <h4>Message: Success Changes</h4> <p>Version 1.1</p>');
+  res.render('index.html');
 })
 
 app.get('/products', (req, res) => {
